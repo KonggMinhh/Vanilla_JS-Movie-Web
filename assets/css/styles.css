@@ -129,11 +129,9 @@ body {
     position: relative;
     flex-grow: 1;
 }
-.search-wrapper::before {
+.search-wrapper::before,
+.load-more::before {
     display: none;
-    position: absolute;
-    top: 14px;
-    right: 12px;
     content: "";
     width: 20px;
     height: 20px;
@@ -142,7 +140,23 @@ body {
     border-inline-end-color: transparent;
     animation: loading 500ms linear infinite;
 }
+.search-wrapper::before {
+    position: absolute;
+    top: 14px;
+    right: 12px;
+}
 .search-wrapper.searching::before {
+    display: block;
+}
+.load-more {
+    background-color: var(--primary-variant);
+    margin-inline: auto;
+    margin-block: 36px 60px;
+}
+.load-more:is(:hover, :focus-visible) {
+    --primary-variant: hsla(350, 67%, 39%, 1);
+}
+.load-more.loading::before {
     display: block;
 }
 @keyframes loading {
@@ -564,3 +578,17 @@ body {
     width: calc(100% -40px);
 }
 /* ====== End Detail Page ====== */
+/* ====== Begin Movie Page ====== */
+.genre-list .title-wrapper {
+    margin-block-end: 56px;
+}
+.grid-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fll, minmax(100px, 1fr));
+    column-gap: 16px;
+    row-gap: 20px;
+}
+.genre-list :is(.movie-card, .card-banner) {
+    width: 100%;
+}
+/* ====== End Movie Page ====== */
