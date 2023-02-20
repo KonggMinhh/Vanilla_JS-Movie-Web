@@ -594,7 +594,7 @@ body {
 }
 /* ====== End Movie Page ====== */
 /* ====== Begin Search Modal ===== */
-.search-modal {
+.search-modal{
     position: fixed;
     top: 96px;
     left: 0;
