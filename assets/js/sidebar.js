@@ -19,7 +19,8 @@ export function sidebar() {
     sidebarInner.classList.add("sidebar-inner");
     sidebarInner.innerHTML = `
                 <div class="sidebar-list">
-                        <p class="title">Genre</p>
+                    <p class="title">Genre</p>
+                    
                 </div>
                 <!-- Language -->
                 <div class="sidebar-list">
@@ -66,25 +67,27 @@ export function sidebar() {
             //     `getMovieList("with_genres= ${genreId}", "${genreName}")`
             // );
             link.textContent = genreName;
-            sidebarInner.querySelectorAll("sidebar-list")[0], appendChild(link);
+            sidebarInner.querySelectorAll(".sidebar-list")[0].appendChild(link);
         }
         const sidebar = document.querySelector("[sidebar]");
         sidebar.appendChild(sidebarInner);
         toggleSidebar(sidebar);
     };
+    const toggleSidebar = function (sidebar) {
+        const sideBarBtn = document.querySelector("[menu-btn]");
+        const sidebarTogglers = document.querySelectorAll("[menu-toggler]");
+        const sidebarClose = document.querySelectorAll("[menu-close]");
+        const overlay = document.querySelector("[overlay]");
+        addEventOnElements(sidebarTogglers, "click", function () {
+            sidebar.classList.toggle("active");
+            sideBarBtn.classList.toggle("active");
+            overlay.classList.toggle("active");
+        });
 
-    const sideBarBtn = document.querySelector("[menu-btn]");
-    const sidebarTogglers = querySelectorAll("[menu-toggle]");
-    const sidebarClose = document.querySelectorAll("[menu-close]");
-    const overlay = document.querySelector("[overlay]");
-    addEventOnElements(sidebarTogglers, "click", function () {
-        sidebar.classList.toggle("active");
-        sideBarBtn.classList.toggle("active");
-        overlay.classList.toggle("active");
-    });
-    addEventOnElements(sidebarTogglers, "click", function () {
-        sidebar.classList.remove("active");
-        sideBarBtn.classList.remove("active");
-        overlay.classList.remove("active");
-    });
+        addEventOnElements(sidebarClose, "click", function () {
+            sidebar.classList.remove("active");
+            sideBarBtn.classList.remove("active");
+            overlay.classList.remove("active");
+        });
+    };
 }
